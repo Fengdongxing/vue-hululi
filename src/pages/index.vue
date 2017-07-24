@@ -10,8 +10,8 @@
                 </el-carousel-item>
             </el-carousel>
         </div>
-
-
+        <img src="../../static/logo.png" alt="" />
+        <img src="../../static/MAMAD1010012.jpg" alt="" />
 
         <router-link to="/test"><el-button type="success">测试页面</el-button></router-link>
         <router-link to="/product/fff"><el-button type="success">产品</el-button></router-link>

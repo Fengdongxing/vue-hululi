@@ -49,6 +49,14 @@ Object.keys(proxyTable).forEach(function (context) {
   app.use(proxyMiddleware(options.filter || context, options))
 })
 
+// app.use(proxyMiddleware([
+//     '/v1',
+//     '/payapi'
+// ], {
+//     target: 'http://cangdu.org:8001',
+//     changeOrigin: true,
+// }))
+
 // handle fallback for HTML5 history API
 app.use(require('connect-history-api-fallback')())
 
