@@ -1,8 +1,15 @@
 <template>
   <div id="app">
     <transition>
-      <router-view></router-view>
+        <keep-alive>
+            <router-view v-if="$route.meta.keepAlive"></router-view>
+        </keep-alive>
     </transition>
+    <transition>
+        <router-view v-if="!$route.meta.keepAlive"></router-view>
+    </transition>
+
+
   </div>
 </template>
 

@@ -10,7 +10,10 @@ Vue.use(Router)
 
 export default new Router({
     mode: 'history',
-    scrollBehavior(to, from, savedPosition) {
+    scrollBehavior (to, from, savedPosition) {
+        console.log(to);
+        console.log(from);
+        console.log(savedPosition);
         if (savedPosition) {
             return savedPosition
         } else {
@@ -25,7 +28,10 @@ export default new Router({
         {
             path: '/',
             name: 'index',
-            component: index
+            component: index,
+            meta: {
+                keepAlive: true
+            },
         },
         // 产品页
         {
