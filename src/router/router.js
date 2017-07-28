@@ -23,6 +23,7 @@ export default new Router({
             }
         }
     },
+    // redirect: '/test',
     routes: [
         // 首页
         {
@@ -31,7 +32,7 @@ export default new Router({
             component: index,
             meta: {
                 keepAlive: true
-            },
+            }
         },
         // 产品页
         {

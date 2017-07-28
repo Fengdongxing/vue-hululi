@@ -25,17 +25,22 @@
                 <img src="../assets/img/shopback.svg" class="list_back_svg">
             </li>
         </ul>
-        <p class="tip" @click="loadData">{{tip}}</p>
+        <p class="tip" @click="fetchData">{{tip}}</p>
+        <loading v-show="loading"></loading>
+        <footer-nav :head-title="'首页'"></footer-nav>
     </div>
 </template>
 
 <script>
-import headerTop from '@/components/header/header'
+import headerTop from '@/components/header'
+import footerNav from '@/components/footer'
+import loading from '@/components/loading'
 
 export default {
     data() {
       return {
         tip: '加载更多',
+        loading: true,
         page: 0,
         pagesize: 10,
         shopListArr: []
@@ -44,17 +49,17 @@ export default {
 
 
     components: {
-        headerTop
+        headerTop,
+        footerNav,
+        loading,
     },
     mounted () {
-
-        this.loadData();
+        this.fetchData();
     },
     methods: {
         // 加载更多数据
-        loadData: function () {
-            if (this.page <= 10) {
-                console.log('正在加载中...');
+        fetchData () {
+            if (this.page <= 3) {
                 this.tip = '正在加载中...';
                 this.$http.post('/api/discover/new_index_v3', {
                     page: this.page++,
@@ -66,6 +71,7 @@ export default {
                         var a = response.data.RESPONSE_INFO.discover_list.ps_list;
                         this.shopListArr = [...this.shopListArr, ...a];
                         this.tip = '加载更多';
+                        this.loading = false;
                     }
                 }, response => {
                     console.log('失败');
@@ -82,13 +88,10 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .el-carousel__item h3{color:#475669;font-size:14px;opacity:0.75;line-height:150px;margin:0;}
 .el-carousel__item:nth-child(2n){background-color:#99a9bf;}
 .el-carousel__item:nth-child(2n+1){background-color:#d3dce6;}
-
-
 
 .pic-item{overflow:hidden;padding:15px;border-bottom:1px solid #eee;display:block;}
 .pic-item-img{float:left;width:70px;height:70px;overflow:hidden;margin-right:15px;background-color:#000;-webkit-background-size:cover;background-size:cover;background-position:center center;background-repeat:no-repeat;}

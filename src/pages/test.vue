@@ -1,19 +1,8 @@
 <template>
   <div class="">
     <header-top :head-title="'测试页面'" :has-back="true"></header-top>
-
-
     <div class="main">
-
-        <div class="block">
-            <el-carousel height="150px" trigger="click" indicator-position="outside">
-                <el-carousel-item v-for="item in 4" :key="item">
-                <h3>{{ item }}</h3>
-                </el-carousel-item>
-            </el-carousel>
-        </div>
-        <img src="../../static/logo.png" alt="" />
-        <img src="../../static/MAMAD1010012.jpg" alt="" />
+        <img src="../images/logo.png" alt="" />
 
         <router-link to="/test"><el-button type="success">测试页面</el-button></router-link>
         <router-link to="/product/fff"><el-button type="success">产品</el-button></router-link>
@@ -34,8 +23,6 @@
           placeholder="请输入内容"
           v-model="textarea2">
         </el-input>
-
-
     </div>
 
 
@@ -45,7 +32,7 @@
 </template>
 
 <script>
-import headerTop from '@/components/header/header'
+import headerTop from '@/components/header'
 
 export default {
     data() {

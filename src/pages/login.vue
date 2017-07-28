@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import headerTop from '@/components/header/header'
+import headerTop from '@/components/header'
 
 export default {
   data() {
