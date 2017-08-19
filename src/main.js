@@ -27,6 +27,14 @@ Vue.http.interceptors.push(function(request, next) {
 })
 
 
+import VueAMap from 'vue-amap'
+Vue.use(VueAMap)
+VueAMap.initAMapApiLoader({
+    key: '623da38306e25dfbe48142da4d3fbc26',
+    plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor'],
+    uiVersion: '1.0'
+})
+
 
 
 // 设置为 false 以阻止 vue 在启动时生成生产提示
