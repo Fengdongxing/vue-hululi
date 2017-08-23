@@ -27,6 +27,7 @@ module.exports = {
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
+    // 代理接口
     proxyTable: {
         '/v1': {
             target: 'http://cangdu.org:8001',
