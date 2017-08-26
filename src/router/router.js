@@ -5,6 +5,7 @@ import test from '@/pages/test'
 import index from '@/pages/index.vue'
 import login from '@/pages/login.vue'
 import product from '@/pages/product.vue'
+import map from '@/pages/map.vue'
 
 Vue.use(Router)
 
@@ -51,6 +52,12 @@ export default new Router({
             path: '/hello',
             name: 'hello',
             component: hello
+        },
+        // 地图
+        {
+            path: '/map',
+            name: 'map',
+            component: map
         },
         // 测试页面
         {

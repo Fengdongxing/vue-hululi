@@ -1,0 +1,14 @@
+{
+    "resp_data": {
+        "widgettype": null,
+        "protocols": null,
+        "datas": [{
+            "group": "终端数据量",
+            "seriesdatas": [{
+                "name": "广州市",
+                "value": "900"
+            }]
+        }],
+        "reportdefine": null
+    }
+}
