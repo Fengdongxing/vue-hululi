@@ -1,0 +1,92 @@
+{
+    "datas": [
+        {
+            "measures": {
+                "address": "广州白云区119路",
+                "salesamount": 0,
+                "sotrename": "华润万家白云区店111",
+                "visitnumber": 10
+            },
+            "position": [
+                116.397470,
+                39.90873
+            ]
+        },
+        {
+            "measures": {
+                "address": "广州白云区119路",
+                "salesamount": 110,
+                "sotrename": "华润万家白云区店111",
+                "visitnumber": 110
+            },
+            "position": [
+                116.397470,
+                39.91873
+            ]
+        },
+        {
+            "measures": {
+                "address": "广州白云区119路",
+                "salesamount": 220,
+                "sotrename": "华润万家白云区店111",
+                "visitnumber": 220
+            },
+            "position": [
+                116.397470,
+                39.92873
+            ]
+        },
+        {
+            "measures": {
+                "address": "广州白云区119路",
+                "salesamount": 360,
+                "sotrename": "华润万家白云区店111",
+                "visitnumber": 360
+            },
+            "position": [
+                116.397470,
+                39.93873
+            ]
+        },
+        {
+            "measures": {
+                "address": "广州白云区119路",
+                "salesamount": 500,
+                "sotrename": "华润万家白云区店111",
+                "visitnumber": 500
+            },
+            "position": [
+                116.397470,
+                39.94873
+            ]
+        }
+    ],
+    "groups": [
+        {
+            "field": "visitnumber",
+            "effect": "color"
+        },
+        {
+            "field": "salesamount",
+            "effect": "size"
+        }
+    ],
+    "fields": [
+        {
+            "field": "sotrename",
+            "name": "终端名称"
+        },
+        {
+            "field": "visitnumber",
+            "name": "拜访次数"
+        },
+        {
+            "field": "salesamount",
+            "name": "销售额"
+        },
+        {
+            "field": "address",
+            "name": "地址"
+        }
+    ]
+}

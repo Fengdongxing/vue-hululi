@@ -8,8 +8,6 @@
     <transition>
         <router-view v-if="!$route.meta.keepAlive"></router-view>
     </transition>
-
-
   </div>
 </template>
 
@@ -53,7 +51,6 @@ audio,canvas,video,progress{display:inline-block;}
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
-    margin-top: 50px;
     overflow:hidden;
     word-break:break-all;
     word-wrap:break-word;

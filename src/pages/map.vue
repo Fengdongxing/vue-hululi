@@ -112,7 +112,7 @@
                         text: ['高', '低'],
                         calculable: true
                     },
-                    animation: true, // 是否开启动画
+                    animation: false, // 是否开启动画
                     // 工具盒
                     toolbox: {
                         show: false,
@@ -317,8 +317,8 @@
 
                         // 赋予数据
                         let sourceData = new Array(0)
-                        if (responseData && responseData.resp_data && responseData.resp_data.datas && responseData.resp_data.datas[0] && responseData.resp_data.datas[0].seriesdatas) {
-                            sourceData = responseData.resp_data.datas[0].seriesdatas
+                        if (responseData && responseData.datas) {
+                            sourceData = responseData.datas
                         }
 
                         // 测试数据
@@ -373,8 +373,8 @@
                         // sourceData = []
                         // 获得 markers 决定标注大小和颜色
                         let sourceMarkers = new Array(0)
-                        if (responseData && responseData.resp_data && responseData.resp_data.protocols && responseData.resp_data.protocols.groups && responseData.resp_data.protocols.groups[0]) {
-                            sourceMarkers = responseData.resp_data.protocols.groups[0].markers
+                        if (responseData && responseData.groups) {
+                            sourceMarkers = responseData.groups
                         }
 
                         // sourceMarkers = [
@@ -436,8 +436,8 @@
 
                         // 获得项目的 fields 以便根据这个数组重新转换数据格式
                         let sourceFields = new Array(0)
-                        if (responseData && responseData.resp_data && responseData.resp_data.protocols && responseData.resp_data.protocols.groups && responseData.resp_data.protocols.groups[0]) {
-                            sourceFields = responseData.resp_data.protocols.groups[0].fields
+                        if (responseData && responseData.fields) {
+                            sourceFields = responseData.fields
                         }
 
                         /**
@@ -538,9 +538,10 @@
 
                             // 赋予数据
                             let sourceData = []
-                            if (responseData && responseData.resp_data && responseData.resp_data.datas && responseData.resp_data.datas[0] && responseData.resp_data.datas[0].seriesdatas) {
-                                sourceData = responseData.resp_data.datas[0].seriesdatas
+                            if (responseData && responseData.datas) {
+                                sourceData = responseData.datas
                             }
+
 
                             // 添加测试数据
                             // sourceData.push({
@@ -762,19 +763,12 @@
 </script>
 
 <style scoped>
-    .amap-wrapper {
-        width: 1000px;
-        height: 800px;
-    }
-
-
-
-
     .storeDistribution {
-        position: absolute;
+        position: fixed;
         width: 100%;
-        height: 90vh;
+        height: 100vh;
         padding: 15px;
+        top: 0px;
     }
 
     /* 左边导航 */
@@ -797,6 +791,7 @@
         top: 0px;
         left: 0px;
         width: 100%;
+        bottom: 0px;
     }
     .storeDistribution-region-tit {
         height: 30px;
@@ -807,7 +802,7 @@
         font-weight: bold;
     }
     .storeDistribution-region-tb {
-        height: 300px;
+        height: 800px;
         overflow-y: auto;
         border: 1px solid #CFCFCF;
     }
