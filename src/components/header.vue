@@ -31,8 +31,35 @@ export default {
 </script>
 
 <style scoped>
-.header{height:50px;line-height:50px;width:100%;color:#fff;background-color:#333;position:fixed;left:0;top:0;}
-.header-back{display:block;width:50px;height:50px;position:absolute;text-align:center;top:0px;left:0px;}
-.header-title{font-size:16px;text-align:center;}
-.header-login{display:block;height:50px;position:absolute;top:0px;right:10px;font-size:12px;}
+.header {
+    height: 45px;
+    line-height: 45px;
+    width: 100%;
+    color: #fff;
+    background-color: #333;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+.header-back {
+    display: block;
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    text-align: center;
+    top: 0px;
+    left: 0px;
+}
+.header-title {
+    font-size: 16px;
+    text-align: center;
+}
+.header-login {
+    display: block;
+    height: 45px;
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    font-size: 12px;
+}
 </style>

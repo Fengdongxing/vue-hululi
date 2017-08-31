@@ -1,7 +1,6 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import router from './router/router'
+import store from './store/'
 import App from './App'
 
 // 引用 ElementUI
@@ -26,7 +25,7 @@ Vue.http.interceptors.push(function(request, next) {
     })
 })
 
-
+// 高德地图
 import VueAMap from 'vue-amap'
 Vue.use(VueAMap)
 VueAMap.initAMapApiLoader({
@@ -35,8 +34,6 @@ VueAMap.initAMapApiLoader({
     uiVersion: '1.0'
 })
 
-
-
 // 设置为 false 以阻止 vue 在启动时生成生产提示
 Vue.config.productionTip = false
 
@@ -44,6 +41,7 @@ Vue.config.productionTip = false
 new Vue({
     el: '#app',
     router,
+    store,
     template: '<App/>',
     components: {
         App

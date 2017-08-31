@@ -8,17 +8,17 @@
  * 3、实现了组件内修改了data属性（由prop创建的），自动向组件外发出事件通知有内部prop修改。由组件外决定是否要将修改同步到组件外
  *
  * 【使用方法】
- * 1、编写组件：在选项对象中增加 mixins:[propsync]即可，无需其他修改
+ * 1、编写组件：在选项对象中增加 mixins: [propsync]即可，无需其他修改
  * 2、调用组件：在调用组件的templat处，增加一个事件监听 onPropsChange（可修改）,当组件内修改了props时会调用此函数，返回 修改prop名称，修改后值，修改前值
  *
  * 调用组件例：
  * <mycomponent :prop1='xxx' :prop2='xxx' @onPropsChange='change'></mycomponent>
  *
  * {
- *   methods:{
- *     change:function(propName,newVal,oldVal){
- *       this[propName]=newVal;
- *       console.log('组件mycomponent的' +propName+ '属性由' +oldVal+ '修改为了' +newVal);
+ *   methods: {
+ *     change: function(propName,newVal,oldVal) {
+ *       this[propName] = newVal;
+ *       console.log('组件mycomponent的' + propName + '属性由' + oldVal + '修改为了' + newVal);
  *     }
  *   }
  * }
@@ -63,6 +63,7 @@ function getDataName(propName) {
 export default {
     // 修改data 自动生成props对应的data字段
     data: function() {
+        
         var data = {}
         var that = this
         // 所有组件定义的props名称数组
@@ -106,6 +107,7 @@ export default {
             }, {})
             unwatchDataFnArr.push(dataFn)
         })
+        console.log('propsync')
     },
     destroyed: function() {
 

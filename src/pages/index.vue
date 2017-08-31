@@ -1,14 +1,6 @@
 <template>
-    <div class="">
+    <div class="" style="padding-top:45px;">
         <header-top :head-title="'首页'"></header-top>
-
-        <div class="block">
-            <el-carousel height="150px" trigger="click" indicator-position="outside">
-                <el-carousel-item v-for="item in 4" :key="item">
-                <h3>{{ item }}</h3>
-                </el-carousel-item>
-            </el-carousel>
-        </div>
         <ul v-if="shopListArr.length">
             <router-link :to="{name: 'product', params: {id: item.id}}" :key="item.id" class="pic-item" v-for="item in shopListArr" tag='li'>
                 <div class="pic-item-img" :style="{
