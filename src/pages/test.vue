@@ -1,13 +1,14 @@
 <template>
-  <div class="" style="padding-top:45px;">
+  <div class="" style="padding:55px 10px 10px;">
     <tester-top :title="title" :has-back="true"></tester-top>
-    <div class="">{{countAlias}}</div>
-    <div class="">{{anotherCount}}</div>
-    <div class="">{{aaa}}</div>
     <div class="main">
         <router-link to="/test"><el-button type="success">测试页面</el-button></router-link>
         <router-link to="/product/fff"><el-button type="success">产品</el-button></router-link>
-        <el-button type="success" @click="test">点击测试</el-button>
+        <el-button type="success" @click="test">点击测试{{countAlias}}</el-button>
+    </div>
+
+    <div class="">
+        <xtion-tree :nodes-array="treeData" :setting="setting" :checked="checked"></xtion-tree>
     </div>
 
   </div>
@@ -15,6 +16,7 @@
 
 <script>
 import testerTop from '@/components/tester'
+import xtionTree from '@/components/xtion_tree'
 
 export default {
     data() {
@@ -22,13 +24,25 @@ export default {
             return {
                 title: '测试页面',
                 mData: 1,
-                cData: 2
+                setting: {
+                    // id
+                    idKey: 'id',
+                    // 父级id
+                    pIdKey: 'pid',
+                    // 子项目名字
+                    childrenKey: 'children',
+                    // 显示的文字
+                    label: 'label',
+                    // 是否应用checkbox
+                    showCheckbox: true
+                },
+                checked: ['1'],
+                treeData: [],
             }
         },
         methods: {
             bar: function() {
-                // this.$store.commit('ADD', 10)
-                this.$store.dispatch('ADD', 10)
+
             },
             test: function() {
                 // this.$store.commit('ADD', 10)
@@ -36,16 +50,10 @@ export default {
             }
         },
         components: {
-            testerTop
+            testerTop,
+            xtionTree
         },
         computed: {
-            // 组建内对象
-            aaa() {
-                return '普通计算属性'
-            },
-            anotherCount() {
-                return this.$store.getters.anotherCount
-            },
             countAlias() {
                 return this.$store.state.count
             }
@@ -65,6 +73,39 @@ export default {
             // console.log(4);this.$store.state.count
             console.log(this.countAlias)
             console.log(this.aaa)
+            let that = this
+
+
+            setTimeout(function() {
+                that.treeData = [{
+                    label: '1级 1',
+                    id: '1',
+                    pid: null,
+                }, {
+                    label: '1级 2',
+                    id: '2',
+                    pid: null,
+                }, {
+                    label: '2级 1-1',
+                    id: '11',
+                    pid: '1',
+                }, {
+                    label: '2级 1-2',
+                    id: '12',
+                    pid: '1',
+                }, {
+                    label: '3级 1-1-1',
+                    id: '111',
+                    pid: '11',
+                }, {
+                    label: '4级 1-1-1-1',
+                    id: '1111',
+                    pid: '111',
+                }]
+            }, 1000)
+
+
+
         },
         beforeUpdate() {
             // console.log(5);
