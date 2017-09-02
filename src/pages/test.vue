@@ -8,7 +8,7 @@
     </div>
 
     <div class="">
-        <xtion-tree :nodes-array="treeData" :setting="setting" :checked="checked"></xtion-tree>
+        <xtion-tree :nodes-array="treeData" :setting="setting" :checked="treeChecked" @onPropsChange="onPropsChange" ref="xtionTree"></xtion-tree>
     </div>
 
   </div>
@@ -36,13 +36,42 @@ export default {
                     // 是否应用checkbox
                     showCheckbox: true
                 },
-                checked: ['1'],
-                treeData: [],
+                treeChecked: ['2'],
+                treeData: [{
+                    label: '1级 1',
+                    id: '1',
+                    pid: null,
+                }, {
+                    label: '1级 2',
+                    id: '2',
+                    pid: null,
+                }, {
+                    label: '2级 1-1',
+                    id: '11',
+                    pid: '1',
+                }, {
+                    label: '2级 1-2',
+                    id: '12',
+                    pid: '1',
+                }, {
+                    label: '3级 1-1-1',
+                    id: '111',
+                    pid: '11',
+                }, {
+                    label: '4级 1-1-1-1',
+                    id: '1111',
+                    pid: '111',
+                }],
             }
         },
         methods: {
             bar: function() {
-
+                console.log(555)
+            },
+            onPropsChange: function (propName, newVal, oldVal) {
+                let that = this
+                that[propName] = newVal
+                console.log(propName + '属性由' + oldVal + '修改为了' + newVal)
             },
             test: function() {
                 // this.$store.commit('ADD', 10)
@@ -77,31 +106,33 @@ export default {
 
 
             setTimeout(function() {
-                that.treeData = [{
-                    label: '1级 1',
-                    id: '1',
-                    pid: null,
-                }, {
-                    label: '1级 2',
-                    id: '2',
-                    pid: null,
-                }, {
-                    label: '2级 1-1',
-                    id: '11',
-                    pid: '1',
-                }, {
-                    label: '2级 1-2',
-                    id: '12',
-                    pid: '1',
-                }, {
-                    label: '3级 1-1-1',
-                    id: '111',
-                    pid: '11',
-                }, {
-                    label: '4级 1-1-1-1',
-                    id: '1111',
-                    pid: '111',
-                }]
+                // that.treeChecked = ['1']
+                that.$refs.xtionTree.setCheckedKeys(['1'])
+                // that.treeData = [{
+                //     label: '1级 1',
+                //     id: '1',
+                //     pid: null,
+                // }, {
+                //     label: '1级 2',
+                //     id: '2',
+                //     pid: null,
+                // }, {
+                //     label: '2级 1-1',
+                //     id: '11',
+                //     pid: '1',
+                // }, {
+                //     label: '2级 1-2',
+                //     id: '12',
+                //     pid: '1',
+                // }, {
+                //     label: '3级 1-1-1',
+                //     id: '111',
+                //     pid: '11',
+                // }, {
+                //     label: '4级 1-1-1-1',
+                //     id: '1111',
+                //     pid: '111',
+                // }]
             }, 1000)
 
 

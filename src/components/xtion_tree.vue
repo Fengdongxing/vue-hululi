@@ -1,15 +1,14 @@
 <template>
 <div class="">
-    
     <el-tree
         :data="nodes"
         :show-checkbox="setting.showCheckbox"
         :node-key="setting.idKey"
+        :empty-text="'暂无数据'"
+        :check-strictly="setting.checkStrictly"
         ref="tree"
         :props="{children: setting.childrenKey, label: setting.label}"
         :style="{border: 'none'}"
-
-        :default-checked-keys="checked"
         @check-change="change">
     </el-tree>
     <div class="" @click="test">点击测试</div>
@@ -23,10 +22,6 @@
 </template>
 <script>
 import propsync from '../plugin/propsync'
-
-let timeoutFn
-
-
 export default {
     data: function () {
         return {
@@ -85,44 +80,42 @@ export default {
                 // 显示的文字
                 label: 'label',
                 // 是否应用checkbox
-                showCheckbox: true
+                showCheckbox: true,
+                // 在显示复选框的情况下，是否严格的遵循父子不互相关联的做法，默认为 false
+                checkStrictly: false
             },
             propsync: false
         },
         // nodes数据
         nodesArray: {
             type: Array,
-            default: [],
-            propsync: true
+            default: []
         },
         // 选中项
         checked: {
             type: Array,
             default: [],
-            // propsync: true
-        },
-        // // 展开项目
-        // expanded: {
-        //     type: Array,
-        //     default: [],
-        //     // propsync: true
-        // }
+            propsync: true
+        }
     },
     methods: {
         // 点击选择终端类型
-        change(data, checked, indeterminate) {
+        change() {
             let that = this
             if (!that.oneExcue) {
                 that.oneExcue = true
                 setTimeout(function() {
                     that.oneExcue = false
-                    console.log(that.$refs.tree.getCheckedKeys())
+                    that.p_checked = that.$refs.tree.getCheckedKeys()
                 }, 300)
             }
         },
         test() {
             let that = this
             console.log('测试')
+        },
+        setCheckedKeys(keys) {
+            this.$refs.tree.setCheckedKeys(keys)
         },
         // 把tree格式转化为array格式
         transformToNodesArray(nodes, setting, pNodeId = null) {
@@ -163,36 +156,35 @@ export default {
 
             var r = []
             var tmpMap = []
-            for (let i = 0, l = nodesArray.length; i < l; i++) {
-                tmpMap[nodesArray[i][id]] = nodesArray[i]
-            }
-            for (let i = 0, l = nodesArray.length; i < l; i++) {
-                if (tmpMap[nodesArray[i][pid]] && nodesArray[i][id] !== nodesArray[i][pid]) {
-                    if (!tmpMap[nodesArray[i][pid]][children]) {
-                        tmpMap[nodesArray[i][pid]][children] = []
+            nodesArray.forEach(function(item, i) {
+                tmpMap[item[id]] = item
+            })
+
+            nodesArray.forEach(function(item, i) {
+                if (tmpMap[item[pid]] && item[id] !== item[pid]) {
+                    if (!tmpMap[item[pid]][children]) {
+                        tmpMap[item[pid]][children] = []
                     }
-                    tmpMap[nodesArray[i][pid]][children].push(nodesArray[i])
-                    delete nodesArray[i][pid]
+                    tmpMap[item[pid]][children].push(item)
+                    delete item[pid]
                 } else {
-                    delete nodesArray[i][pid]
-                    r.push(nodesArray[i])
+                    delete item[pid]
+                    r.push(item)
                 }
-            }
-            // console.log(that.nodesArray[2].children)
+            })
             return r
         }
     },
     watch: {
-        // // 监听父组件的数据
-        // checked(curVal, oldVal) {
-        //     let that = this
-        //     if (curVal === oldVal) {
-        //         return
-        //     } else {
-        //         console.log('监听父组件的checked')
-        //         that.$refs.tree.setCheckedKeys(curVal)
-        //     }
-        // },
+        // 监听父组件的数据
+        checked(curVal, oldVal) {
+            let that = this
+            if (curVal === oldVal) {
+                return
+            } else {
+                that.$refs.tree.setCheckedKeys(curVal)
+            }
+        },
         // 初始化
         nodesArray(curVal, oldVal) {
             let that = this
@@ -200,13 +192,17 @@ export default {
                 return
             } else {
                 that.nodes = that.transformToTreeNodes(curVal, that.setting)
-                // console.log(that.transformToNodesArray(that.nodes, that.setting))
             }
         }
     },
     mounted () {
         let that = this
-
+        if (that.nodesArray.length > 0) {
+            that.nodes = that.transformToTreeNodes(that.nodesArray, that.setting)
+        }
+        if (that.checked.length > 0) {
+            that.setCheckedKeys(that.checked)
+        }
     }
 }
 </script>
