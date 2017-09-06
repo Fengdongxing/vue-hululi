@@ -66,12 +66,12 @@ export default {
         },
         methods: {
             bar: function() {
-                console.log(555)
+                // console.log(555)
             },
             onPropsChange: function (propName, newVal, oldVal) {
                 let that = this
                 that[propName] = newVal
-                console.log(propName + '属性由' + oldVal + '修改为了' + newVal)
+                // console.log(propName + '属性由' + oldVal + '修改为了' + newVal)
             },
             test: function() {
                 // this.$store.commit('ADD', 10)
@@ -100,8 +100,8 @@ export default {
         },
         mounted() {
             // console.log(4);this.$store.state.count
-            console.log(this.countAlias)
-            console.log(this.aaa)
+            // console.log(this.countAlias)
+            // console.log(this.aaa)
             let that = this
 
 
@@ -134,6 +134,7 @@ export default {
                 //     pid: '111',
                 // }]
             }, 1000)
+
 
 
 

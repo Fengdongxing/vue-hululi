@@ -54,7 +54,6 @@ export default {
     },
     created() {
         // this.$emit('update:title', 'newValue')
-        console.log(4);
     }
 
 }
